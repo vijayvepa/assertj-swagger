@@ -91,7 +91,7 @@ public class PropertyValidator {
         StringProperty expectedStringProperty) {
         List<String> expectedEnums = expectedStringProperty.getEnum();
         if (CollectionUtils.isNotEmpty(expectedEnums)) {
-            softAssertions.assertThat(actualStringProperty.getEnum()).hasSameElementsAs(expectedEnums);
+            softAssertions.assertThat(actualStringProperty.getEnum()).containsAll(expectedEnums);
         } else {
             softAssertions.assertThat(actualStringProperty.getEnum()).isNullOrEmpty();
         }
