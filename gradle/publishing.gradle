@@ -29,19 +29,37 @@ if (!project.hasProperty('gpgPassphrase')) ext.gpgPassphrase = ''
 if (!project.hasProperty('ossUser')) ext.ossUser = ''
 if (!project.hasProperty('ossPassword')) ext.ossPassword = ''
 
-def user = project.hasProperty("githubUserName") ? project.githubUserName: System.getenv("GITHUB_USERNAME")
-def token =  project.hasProperty("githubToken") ? project.githubToken: System.getenv("GITHUB_TOKEN")
+def gitHubUserName = project.hasProperty("githubUserName") ? project.githubUserName: System.getenv("GITHUB_USERNAME")
+def gitHubToken =  project.hasProperty("githubToken") ? project.githubToken: System.getenv("GITHUB_TOKEN")
 
-println ('*%%%%%**GITHUB USERNAME*' +  user)
-println ('*%%%%%**GITHUB TOKEN *' + token)
+def mavenCentralUserName = project.hasProperty("mavenCentralUserName") ? project.githubUserName: System.getenv("MAVEN_CENTRAL_USERNAME")
+def mavenCentralPassword =  project.hasProperty("mavenCentralPassword") ? project.githubToken: System.getenv("MAVEN_CENTRAL_PASSWORD")
+
 publishing {
     repositories {
         maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/vijayvepa/assertj-swagger")
             credentials {
-                username = user
-                password = token
+                username = gitHubUserName
+                password = gitHubToken
+            }
+        }
+        maven{
+            name = "MavenCentral"
+            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            credentials  {
+                username = mavenCentralUserName
+                password = mavenCentralPassword
+            }
+        }
+
+        maven{
+            name = "MavenCentralSnapshot"
+            url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            credentials  {
+                username = mavenCentralUserName
+                password = mavenCentralPassword
             }
         }
     }
@@ -63,7 +81,7 @@ publishing {
                 root.appendNode('name', 'assertj-swagger')
                 root.appendNode('packaging', 'jar')
                 root.appendNode('url', 'https://github.com/vijayvepa/assertj-swagger')
-                root.appendNode('description', 'A Swagger to Markup (AsciiDoc and Markdown) converter.')
+                root.appendNode('description', 'Verification library for contract adherence and backward compatibility')
 
                 def license = root.appendNode('licenses').appendNode('license')
                 license.appendNode('name', 'Apache-2.0')
@@ -79,8 +97,7 @@ publishing {
                     d.appendNode('name', it.value)
                 }
             }
-            artifact sourcesJar
-            artifact javadocJar
         }
     }
 }
+
