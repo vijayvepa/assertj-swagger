@@ -82,5 +82,5 @@ tasks.coveralls {
 }
 
 wrapper {
-    version = '7.4.2'
+    gradleVersion = '7.4.2'
 }

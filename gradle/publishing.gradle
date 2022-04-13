@@ -32,8 +32,12 @@ if (!project.hasProperty('ossPassword')) ext.ossPassword = ''
 def gitHubUserName = project.hasProperty("githubUserName") ? project.githubUserName: System.getenv("GITHUB_USERNAME")
 def gitHubToken =  project.hasProperty("githubToken") ? project.githubToken: System.getenv("GITHUB_TOKEN")
 
-def mavenCentralUserName = project.hasProperty("mavenCentralUserName") ? project.githubUserName: System.getenv("MAVEN_CENTRAL_USERNAME")
-def mavenCentralPassword =  project.hasProperty("mavenCentralPassword") ? project.githubToken: System.getenv("MAVEN_CENTRAL_PASSWORD")
+def mavenCentralUserName = project.hasProperty("mavenCentralUserName") ? project.mavenCentralUserName: System.getenv("MAVEN_CENTRAL_USERNAME")
+def mavenCentralPassword =  project.hasProperty("mavenCentralPassword") ? project.mavenCentralPassword: System.getenv("MAVEN_CENTRAL_PASSWORD")
+
+println "##### mavenCentralUserName: $mavenCentralUserName"
+println "##### mavenCentralPassword: $mavenCentralPassword"
+
 
 publishing {
     repositories {
