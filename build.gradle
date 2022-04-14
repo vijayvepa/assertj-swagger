@@ -53,17 +53,9 @@ dependencies {
 
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    from sourceSets.main.allSource
-}
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-     from javadoc
-}
 
-artifacts {
-    archives sourcesJar, javadocJar
-}
+
 
 signing{
     sign publishing.publications.mavenJava
