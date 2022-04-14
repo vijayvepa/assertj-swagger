@@ -36,7 +36,7 @@ The project is published in JCenter and Maven Central.
 </repositories>
 
 <dependency>
-    <groupId>io.github.robwin</groupId>
+    <groupId>io.github.vijayvepa</groupId>
     <artifactId>assertj-swagger</artifactId>
     <version>{version}</version>
 </dependency>
@@ -47,10 +47,10 @@ The project is published in JCenter and Maven Central.
 [source,groovy, subs="attributes"]
 ----
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
-compile "io.github.robwin:assertj-swagger:{version}"
+compile "io.github.vijayvepa:assertj-swagger:{version}"
 ----
 
 === Using assertj-swagger in an integration test
